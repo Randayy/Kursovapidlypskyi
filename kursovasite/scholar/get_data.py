@@ -17,8 +17,8 @@ for author in response.json()["profiles"]:
     print(author["name"])
     name = author["name"]
     print('Дані про автора:')
-    print(' - ' + author["name"])
-    print(' - ' + author["author_id"])
+    print('Name: ' + author["name"])
+    print('Google Scholar ID ' + author["author_id"])
     google_scholar_id = author["author_id"]
     list_of_interests = []
     print('Interests:')
