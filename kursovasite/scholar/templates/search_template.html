@@ -1,0 +1,6 @@
+<h2>Пошук за повним ім'ям</h2>
+
+<form method="post" action="{% url 'search_scholar' %}">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Пошук</button>
+</form>

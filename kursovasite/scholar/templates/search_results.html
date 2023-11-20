@@ -1,0 +1,11 @@
+<h2>Результати пошуку</h2>
+
+{% if results %}
+<ul>
+  {% for scholar in results %}
+  <li>{{ scholar.full_name }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Немає результатів</p>
+{% endif %}

@@ -3,6 +3,24 @@ from django.http import HttpResponse
 from django.template import loader
 from scholar import get_data
 from scholar.models import MyData
+from .forms import SearchForm
+
+
+def search_scholar(request):
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search_query = form.cleaned_data["full_name"]
+            results = MyData.objects.filter(full_name__icontains=search_query)
+            return render(
+                request,
+                "search_results.html",
+                {"results": results, "form": form},
+            )
+    else:
+        form = SearchForm()
+
+    return render(request, "search_template.html", {"form": form})
 
 
 def scholar(request):
