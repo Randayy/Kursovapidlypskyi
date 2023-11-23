@@ -1,11 +1,22 @@
-<h2>Результати пошуку</h2>
-
-{% if results %}
-<ul>
-  {% for scholar in results %}
-  <li>{{ scholar.full_name }}</li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>Немає результатів</p>
-{% endif %}
+<html>
+<head>
+    <title>Результати пошуку</title>
+</head>
+<body>
+    <h2>Результати пошуку</h2>
+    <form method="post" action="{% url 'search_scholar' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Пошук</button>
+    </form>
+    {% if results %}
+        <ul>
+            {% for scholar in results %}
+                <li><a href="{% url 'scholar_detail' scholar.id %}">{{ scholar.full_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Немає результатів</p>
+    {% endif %}
+</body>
+</html>

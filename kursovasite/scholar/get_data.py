@@ -39,5 +39,5 @@ def save_data_from_json(name):
     print(MyData.objects.all().values())
 
 
-input_name = input("Enter name: ")
-save_data_from_json(input_name)
+# input_name = input("Enter name: ")
+# save_data_from_json(input_name)
