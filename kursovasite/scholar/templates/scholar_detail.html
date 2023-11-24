@@ -1,28 +1,147 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>{{ scholar.full_name }}</title>
-</head>
-<body>
-    <h2>{{ scholar.full_name }}</h2>
+    <!-- Підключення Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-r2XO1sVVJzzEuZOYG7FmqT6U8lf1zZvH+In1JagOGnGAsIIFdJBSKx1qVdeQ46t"
+      crossorigin="anonymous"
+    />
     <style>
-        .custom-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;  /* або інше значення, залежно від вашого вибору */
+      body {
+        font-family: "Montserrat", sans-serif;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        color: #ffffff;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #343a40, #007bff);
+        opacity: 0.8;
+        z-index: -1;
+        animation: gradientAnimation 10s infinite linear;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
         }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .custom-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 20px auto;
+        display: block;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .custom-image:hover {
+        transform: scale(1.1);
+      }
+
+      .info-container {
+        background-color: rgba(0, 0, 0, 0.8); /* темний фон */
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* біла тінь */
+      }
+
+      .return-link {
+        display: inline-block;
+        margin-top: 20px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #ffffff;
+        background-color: #007bff;
+      }
+
+      .return-link:hover {
+        background-color: #0056b3;
+        color: #ffffff;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        transition: font-size 0.3s ease-in-out;
+      }
+
+      h2:hover {
+        font-size: 3rem;
+      }
     </style>
-    
-    <!-- Додайте інші деталі про автора, якщо вони є -->
+  </head>
+  <body class="container">
+    <div class="row mt-5">
+      <div class="col-md-6 offset-md-3 text-center">
+        <h2>{{ scholar.full_name }}</h2>
 
-    <!-- Виведення картинки -->
-    {% if scholar.image %}
-        <img src="{{ scholar.image.url }}" alt="{{ scholar.full_name }}" class="custom-image">
-    {% else %}
+        {% if scholar.image %}
+        <img
+          src="{{ scholar.image.url }}"
+          alt="{{ scholar.full_name }}"
+          class="custom-image"
+        />
+        {% else %}
         <p>No image available</p>
-    {% endif %}
+        {% endif %}
 
-    <a href="{% url 'search_scholar' %}">Повернутися до результатів пошуку</a>
-</body>
+        <div class="info-container">
+          <ul class="list-group">
+            {% if scholar.google_scholar_id %}
+            <li class="list-group-item">
+              Google Scholar ID: {{ scholar.google_scholar_id }}
+            </li>
+            {% endif %} {% if scholar.interest_list %}
+            <li class="list-group-item">
+              Interest List: {{ scholar.interest_list }}
+            </li>
+            {% endif %} {% if scholar.sub_title %}
+            <li class="list-group-item">Sub Title: {{ scholar.sub_title }}</li>
+            {% endif %} {% if scholar.email %}
+            <li class="list-group-item">Email: {{ scholar.email }}</li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <a href="{% url 'search_scholar' %}" class="return-link"
+          >Повернутися до результатів пошуку</a
+        >
+      </div>
+    </div>
+
+    <!-- Підключення Bootstrap JS та Popper.js CDN (обов'язкові для деяких функцій Bootstrap) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
