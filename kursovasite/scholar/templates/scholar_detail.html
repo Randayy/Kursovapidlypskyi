@@ -6,11 +6,22 @@
 </head>
 <body>
     <h2>{{ scholar.full_name }}</h2>
+    <style>
+        .custom-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;  /* або інше значення, залежно від вашого вибору */
+        }
+    </style>
     
     <!-- Додайте інші деталі про автора, якщо вони є -->
 
     <!-- Виведення картинки -->
-    <img src="{{ scholar.image.url }}" alt="{{ scholar.full_name }}">
+    {% if scholar.image %}
+        <img src="{{ scholar.image.url }}" alt="{{ scholar.full_name }}" class="custom-image">
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
 
     <a href="{% url 'search_scholar' %}">Повернутися до результатів пошуку</a>
 </body>
