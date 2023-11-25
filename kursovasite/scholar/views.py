@@ -6,9 +6,10 @@ from scholar.models import MyData
 from .forms import SearchForm
 from django.shortcuts import render, get_object_or_404
 
+
 def scholar_detail(request, scholar_id):
     scholar = get_object_or_404(MyData, pk=scholar_id)
-    return render(request, 'scholar_detail.html', {'scholar': scholar})
+    return render(request, "scholar_detail.html", {"scholar": scholar})
 
 
 def search_scholar(request):

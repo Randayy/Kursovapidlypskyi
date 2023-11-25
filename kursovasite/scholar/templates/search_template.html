@@ -1,6 +1,133 @@
-<h2>Пошук за повним ім'ям</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Пошук за повним ім'ям</title>
+    <!-- Підключення Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-r2XO1sVVJzzEuZOYG7FmqT6U8lf1zZvH+In1JagOGnGAsIIFdJBSKx1qVdeQ46t"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        color: #ffffff;
+      }
 
-<form method="post" action="{% url 'search_scholar' %}">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Пошук</button>
-</form>
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #343a40, #007bff);
+        opacity: 0.8;
+        z-index: -1;
+        animation: gradientAnimation 10s infinite linear;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .search-container {
+        margin: auto, auto, auto, auto;
+        position: fixed;
+        width: 400px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+
+      .form-group {
+        display: block;
+        margin: auto;
+        margin-bottom: 2.5rem;
+        width: 75%;
+      }
+
+      .form-control {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+      }
+
+      button {
+        margin-top: 200px;
+        background-color: #007bff;
+        color: #ffffff;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        width: 75%;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+        color: #ffffff;
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .created-by {
+        position: relative;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search-container">
+      <h2 class="title">Пошук за повним ім'ям</h2>
+      <form method="post" action="{% url 'search_scholar' %}">
+        {% csrf_token %}
+        <div class="form-group">{{ form.as_p }}</div>
+        <button type="submit">Пошук</button>
+      </form>
+    </div>
+
+    <div class="created-by">Created by Roman Pydlypdkyi</div>
+
+    <!-- Підключення Bootstrap JS та Popper.js CDN (обов'язкові для деяких функцій Bootstrap) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

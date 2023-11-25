@@ -96,6 +96,15 @@
       h2:hover {
         font-size: 3rem;
       }
+      .created-by {
+        position: relative;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #ffffff;
+      }
     </style>
   </head>
   <body class="container">
@@ -105,8 +114,8 @@
 
         {% if scholar.image %}
         <img
-          src="{{ scholar.image.url }}"
-          alt="{{ scholar.full_name }}"
+          src="{{ scholar.image }}"
+          alt="Profile Image of {{ scholar.full_name }}"
           class="custom-image"
         />
         {% else %}
@@ -136,6 +145,7 @@
         >
       </div>
     </div>
+    <div class="created-by">Created by Roman Pydlypdkyi</div>
 
     <!-- Підключення Bootstrap JS та Popper.js CDN (обов'язкові для деяких функцій Bootstrap) -->
     <script

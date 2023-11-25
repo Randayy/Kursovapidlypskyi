@@ -8,9 +8,12 @@ urlpatterns = [
     path("scholar/", views.scholar, name="scholar"),
     # path("/", views.index, name="index"),
     path("search/", views.search_scholar, name="search_scholar"),
-    path('scholar_detail/<int:scholar_id>/', views.scholar_detail, name='scholar_detail'),
+    path(
+        "scholar_detail/<int:scholar_id>/", views.scholar_detail, name="scholar_detail"
+    ),
 ]
 
 if settings.DEBUG:
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += staticfiles_urlpatterns() + static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
