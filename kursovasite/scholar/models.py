@@ -7,4 +7,4 @@ class MyData(models.Model):
     interest_list = models.CharField(max_length=1000)
     sub_title = models.CharField(max_length=1000, default="", blank=True)
     email = models.CharField(max_length=1000, default="", blank=True)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
+    image = models.URLField(blank=True, null=True)
