@@ -24,20 +24,32 @@
         color: #ffffff;
       }
 
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
+      .bg {
         width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, #343a40, #007bff);
-        opacity: 0.8;
-        z-index: -1;
-        animation: gradientAnimation 10s infinite linear;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: 200% 200%; /* Змінено розмір фону */
+        background-attachment: fixed;
+        background-image: linear-gradient(-45deg, #380036 0%, #0cbaba 100%);
+        -webkit-animation: AnimateBG 10s ease infinite;
+        animation: AnimateBG 10s ease infinite;
       }
 
-      @keyframes gradientAnimation {
+      @-webkit-keyframes AnimateBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes AnimateBG {
         0% {
           background-position: 0% 50%;
         }
@@ -64,16 +76,21 @@
       }
 
       .form-group {
-        display: block;
+
         margin: auto;
         margin-bottom: 2.5rem;
-        width: 75%;
+        width: 80%;
       }
 
       .form-control {
         background-color: rgba(255, 255, 255, 0.9);
         border: 1px solid #dee2e6;
         border-radius: 5px;
+        width: 80%;
+        height: 30px;
+        display: block;
+        margin: auto;
+        text-align: center;
       }
 
       button {
@@ -100,7 +117,7 @@
         margin-bottom: 1.5rem;
       }
 
-      .created-by {
+      {% comment %} .created-by {
         position: relative;
         text-align: center;
         margin-top: 50px;
@@ -108,16 +125,192 @@
         margin-left: auto;
         margin-right: auto;
         color: #ffffff;
+      } {% endcomment %}
+      .created-by {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+      }
+      .button {
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        padding-block: 0.5rem;
+        padding-inline: 1.25rem;
+        background-color: rgb(0 107 179);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffff;
+        gap: 10px;
+        font-weight: bold;
+        border: 3px solid #ffffff4d;
+        outline: none;
+        overflow: hidden;
+        font-size: 15px;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .button:hover {
+        transform: scale(1.05);
+        border-color: #fff9;
+      }
+
+      .button:hover .icon {
+        transform: translate(4px);
+      }
+
+      .button:hover::before {
+        animation: shine 1.5s ease-out infinite;
+      }
+
+      .button::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        background-image: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0) 30%,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0) 70%
+        );
+        top: 0;
+        left: -100px;
+        opacity: 0.6;
+      }
+
+      @keyframes shine {
+        0% {
+          left: -100px;
+        }
+
+        60% {
+          left: 100%;
+        }
+
+        to {
+          left: 100%;
+        }
+      }
+
+      {% comment %} Header {% endcomment %}
+      .header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        z-index: 1000; /* Забезпечити, що header завжди з'являється поверх інших елементів */
+      }
+
+      .header-title {
+        margin-left: 50px;
+        margin-right: auto;
+        font-size: 25px;
+      }
+
+      .header-links {
+        justify-content: center;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-right: 50px;
+      }
+
+      .header-links a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .created-by {
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+      }
+
+
+      .btn {
+        border: none;
+        color: #fff;
+        background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+        border-radius: 20px;
+        background-size: 100% auto;
+        font-family: inherit;
+        font-size: 17px;
+        padding: 0.6em 1.5em;
+        transition: background-position 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .btn:hover {
+        background-position: right center;
+        background-size: 200% auto;
+        box-shadow: 0 0 10px 0px rgba(218, 103, 68, 0.2);
+        -webkit-animation: pulse 2s infinite;
+        animation: pulse512 1.5s infinite;
+        }
+
+      @keyframes pulse512 {
+        0% {
+          box-shadow: 0 0 0 0 #05bada66;
+        }
+
+        70% {
+          box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+        }
       }
     </style>
   </head>
   <body>
+    <div class="bg"></div>
+    <div class="header-container">
+      <div class="header-title">Kursova Robota</div>
+      <div class="header-links">
+        <a class="btn" href="#">Leaderboard</a>
+        <a class="btn" href="#">Home Page</a>
+        <a class="btn" href="#">List Of Authors</a>
+      </div>
+    </div>
     <div class="search-container">
       <h2 class="title">Пошук за повним ім'ям</h2>
       <form method="post" action="{% url 'search_scholar' %}">
         {% csrf_token %}
-        <div class="form-group">{{ form.as_p }}</div>
-        <button type="submit">Пошук</button>
+        <div class="form-group">{{ form.full_name }}</div>
+        <button type="submit" class="button">
+          Пошук
+          <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
+            <path
+              clip-rule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
       </form>
     </div>
 
