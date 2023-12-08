@@ -297,10 +297,10 @@
       </div>
     </div>
     <div class="search-container">
-      <h2 class="title">Пошук за повним ім'ям</h2>
-      <form method="post" action="{% url 'search_scholar' %}">
+      <h2 class="title">Пошук по Scopus</h2>
+      <form method="post" action="{% url 'search_elsevier' %}">
         {% csrf_token %}
-        <div class="form-group">{{ form.full_name }}</div>
+        <div class="form-group">{{ form.first_name }}{{ form.last_name }}</div>
         <button type="submit" class="button">
           Пошук
           <svg fill="currentColor" viewBox="0 0 24 24" class="icon">

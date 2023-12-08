@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyData Page</title>
+    <!-- Додайте сюди ваші стилі чи підключення CDN-файлів для стилів -->
+    <style>
+        body {
+          font-family: "Montserrat", sans-serif;
+          position: relative;
+          overflow: auto;
+          margin: 0;
+          color: #ffffff;
+        }
+  
+        .bg {
+          width: 100%;
+          height: 200%;
+          display: flex;
+          margin-top: -25px;
+          position: fixed;
+          z-index: -1;
+          align-items: center;
+          justify-content: center;
+          background-size: 200% 200%; /* Змінено розмір фону */
+          background-attachment: fixed;
+          background-image: linear-gradient(-45deg, #380036 0%, #0cbaba 100%);
+          -webkit-animation: AnimateBG 10s ease infinite;
+          animation: AnimateBG 10s ease infinite;
+        }
+  
+        @-webkit-keyframes AnimateBG {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+  
+        @keyframes AnimateBG {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+  
+  
+        button {
+          margin-top: 200px;
+          background-color: #007bff;
+          color: #ffffff;
+          border: 1px solid #007bff;
+          border-radius: 5px;
+          padding: 10px 20px;
+          cursor: pointer;
+          display: block;
+          margin: auto;
+          width: 75%;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+  
+        button:hover {
+          background-color: #0056b3;
+          color: #ffffff;
+        }
+  
+        .title {
+          text-align: center;
+          margin-bottom: 1.5rem;
+        }
+        .created-by {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          padding: 10px;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: #ffffff;
+        }
+        
+        .header-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: #ffffff;
+          z-index: 1000; /* Забезпечити, що header завжди з'являється поверх інших елементів */
+        }
+  
+        .header-title {
+          margin-left: 50px;
+          margin-right: auto;
+          font-size: 25px;
+        }
+  
+        .header-links {
+          justify-content: center;
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          margin-right: 50px;
+        }
+  
+        .header-links a {
+          color: #ffffff;
+          text-decoration: none;
+        }
+  
+        .created-by {
+  
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          padding: 10px;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: #ffffff;
+        }
+  
+  
+        .btn {
+          border: none;
+          color: #fff;
+          background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+          border-radius: 20px;
+          background-size: 100% auto;
+          font-family: inherit;
+          font-size: 17px;
+          padding: 0.6em 1.5em;
+          transition: background-position 0.4s ease, box-shadow 0.4s ease;
+        }
+  
+        .btn:hover {
+          background-position: right center;
+          background-size: 200% auto;
+          box-shadow: 0 0 10px 0px rgba(218, 103, 68, 0.2);
+          -webkit-animation: pulse 2s infinite;
+          animation: pulse512 1.5s infinite;
+          }
+  
+        @keyframes pulse512 {
+          0% {
+            box-shadow: 0 0 0 0 #05bada66;
+          }
+  
+          70% {
+            box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+          }
+  
+          100% {
+            box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+          }
+        }
+
+
+
+
+
+        /* card css */
+        .card {
+            border: 2px solid #ffffff;
+            width: 190px;
+            height: 254px;
+            background-image: linear-gradient(144deg,#8608b4, #492fed 60%,#1b22e5);
+            
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+            font-family: inherit;
+        }
+
+        .card span {
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            display: block;
+            padding-top: 10px;
+            font-size: 1.3em;
+        }
+
+        .card .job {
+            font-weight: 400;
+            color: white;
+            display: block;
+            text-align: center;
+            padding-top: 5px;
+            font-size: 1em;
+        }
+
+        .card .img {
+            width: 80px;
+            height: 80px;
+            
+            border-radius: 50%; /* Округлені кути для кола */
+            margin: auto;
+            margin-top: 10px;
+        }
+        .card_title{
+            margin-top: 20px;
+        }
+
+        .card button {
+            padding: 8px 25px;
+            display: block;
+            margin: auto;
+            border-radius: 8px;
+            border: none;
+            margin-top: 30px;
+            background: #e8e8e8;
+            color: #111111;
+            font-weight: 600;
+        }
+
+        .card button:hover {
+            background: #212121;
+            color: #ffffff;
+        }
+        .cards_container {
+            margin-left: 5%;
+            margin-right: 1%;
+            height:80%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            grid-template-rows: repeat(3, auto); /* 3 rows, you can adjust the height as needed */
+            gap: 20px; /* Adjust the gap between cards */
+        }
+
+        .card {
+            margin-top: 70px;
+            width: 80%; /* Make sure each card takes the full width of its grid cell */
+            height: 80%; /* Make sure each card takes the full height of its grid cell */
+            /* Your existing card styles here */
+        }
+
+
+        /* pagination css */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+
+        .step-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            color: #ffffff; /* Колір тексту */
+        }
+
+        .step-links a {
+            padding: 8px 12px;
+            background-color: #343a40; /* Темний фон */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .step-links a:hover {
+            background-color: #007bff; /* Колір при наведенні */
+            color: #ffffff;
+        }
+
+        .current {
+            padding: 8px 12px;
+            background-color: #007bff; /* Фон для поточної сторінки */
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        /* хедер */
+        .header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        z-index: 1000; /* Забезпечити, що header завжди з'являється поверх інших елементів */
+      }
+
+      .header-title {
+        margin-left: 50px;
+        margin-right: auto;
+        font-size: 25px;
+      }
+
+      .header-links {
+        justify-content: center;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-right: 50px;
+      }
+
+      .header-links a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .created-by {
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+      }
+
+
+      .btn {
+        border: none;
+        color: #fff;
+        background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+        border-radius: 20px;
+        background-size: 100% auto;
+        font-family: inherit;
+        font-size: 17px;
+        padding: 0.6em 1.5em;
+        transition: background-position 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .btn:hover {
+        background-position: right center;
+        background-size: 200% auto;
+        box-shadow: 0 0 10px 0px rgba(218, 103, 68, 0.2);
+        -webkit-animation: pulse 2s infinite;
+        animation: pulse512 1.5s infinite;
+        }
+
+      @keyframes pulse512 {
+        0% {
+          box-shadow: 0 0 0 0 #05bada66;
+        }
+
+        70% {
+          box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+        }
+      }
+
+      .title_cards_page{
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+      }
+
+
+
+      </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="header-container">
+        <div class="header-title">Kursova Robota</div>
+        <div class="header-links">
+          <a class="btn" href="#">Leaderboard</a>
+          <a class="btn" href="/search">Home Page</a>
+          <a class="btn" href="/persons/?page=1">List Of Authors</a>
+        </div>
+      </div>
+    
+        
+
+    <div><h1 class="title_cards_page">
+        All Authors in Database
+    </h1></div>    
+    <div class="cards_container">
+        {% for item in data %}
+        <div class="card">
+            <div class="card-border-top">
+            </div>
+            <div class="img">
+                <img class="img" src="{{item.image}}"></img>
+            </div>
+            <span class="card_title">{{ item.full_name }}</span>
+            <h5 class="job">{{ item.sub_title }}</h5>
+            <button class="click-button" data-url="{% url 'scholar_detail' item.id %}">Click</button>
+        </div>
+        {% endfor %}
+        
+            
+    </div>
+    </div>
+    
+    <div class="pagination">
+        <span class="step-links">
+          {% if data.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ data.previous_page_number }}">previous</a>
+          {% endif %}
+      
+          <span class="current">
+            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+          </span>
+      
+          {% if data.has_next %}
+          <a href="?page={{ data.next_page_number }}">next</a>
+          <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+
+    <!-- Add Bootstrap JS and Popper.js CDN links here -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.click-button');
+    
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const url = button.getAttribute('data-url');
+                    window.location.href = url;
+                });
+            });
+        });
+
+    // http://kursova.com/auth#access_token=be0fe5da-7a15-4aff-8d91-85f3191b0a3e&token_type=bearer&expires_in=599&tokenVersion=1&persistent=true&id_token=eyJraWQiOiJwcm9kdWN0aW9uLW9yY2lkLW9yZy03aGRtZHN3YXJvc2czZ2p1am84YWd3dGF6Z2twMW9qcyIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiY2dRdlJXdEtxMTc1cTNwbnRNejNXUSIsImF1ZCI6IkFQUC1YSUNUSkRaVElLRURGUlBWIiwic3ViIjoiMDAwOS0wMDA5LTU2NTgtNTQ4NiIsImF1dGhfdGltZSI6MTcwMTAxMjU0MSwiaXNzIjoiaHR0cHM6XC9cL29yY2lkLm9yZyIsImV4cCI6MTcwMTc3MTI3NCwiZ2l2ZW5fbmFtZSI6IlJvbWEiLCJpYXQiOjE3MDE2ODQ4NzQsImZhbWlseV9uYW1lIjoiUGlkbGlwc2tpeSIsImp0aSI6Ijg4ZDk2MWEzLWNhMzMtNGIxMi05NWZkLWIyODNjMmI1ODk4NiJ9.HscLh1dCSdjklYzANHuj9dKfpJRkVXf8ddGGc3Id_H11M1GkYeUx2pqBSV_po-HfOEbwGpVrApy1Edi_HRs3HA-hxLKLIUHQ6YV0BrE3GmOBrghc1CygmdVQFBW1PfT6lR5hX_sTvLyFPjMOyNeCGDhyWs_FQdDKXilt3NRWJ6iRAQz7FjPi84Jd0UcsssJI-uYBtdZK_C9H9VSV816vWbhLnfI25uRJLPTzqsOBM9Bv7eTh1FRsh7lj_r-CbJImORdyoi_hdo8oWpGut2qO8CGLzZumRPYtwHl9Ko0MnzbNuF9ML-FtK1YBbbR_NPq_2iqUp_-n9QUc6mIDvEv52A&tokenId=400839824
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</body>
+</html>
