@@ -13,6 +13,7 @@ import requests
 import json
 from django.db import transaction
 from scholar.models import MyData
+from scholar.models import ElsevierModel
 import re
 
 
@@ -22,6 +23,54 @@ import re
 def scholar_detail(request, scholar_id):
     scholar = get_object_or_404(MyData, pk=scholar_id)
     return render(request, "scholar_detail.html", {"scholar": scholar})
+
+def elsevier_detail(request, scopus_id):
+    scholar = get_object_or_404(ElsevierModel, pk=scopus_id)
+    url = f'https://www.scopus.com/author/highchart.uri?authorId={str(scholar.scopus_id)}&apiKey=7b03208d6f2a586392c25c8d59933d43&insttoken=ace1a9b7e5d8b0336204845e7e6c393b'
+    headers = {
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'Cookie': 'SCOPUS_JWT=eyJraWQiOiJjYTUwODRlNi03M2Y5LTQ0NTUtOWI3Zi1kMjk1M2VkMmRiYmMiLCJhbGciOiJSUzI1NiJ9.eyJhbmFseXRpY3NfaW5mbyI6eyJhY2NvdW50TmFtZSI6IlNjb3B1cyBQcmV2aWV3IiwiYWNjb3VudElkIjoiMjc4NjQxIiwidXNlcklkIjoiYWU6MTMzNDEyNTMiLCJhY2Nlc3NUeXBlIjoiYWU6QU5PTjo6R1VFU1Q6In0sImRlcGFydG1lbnROYW1lIjoiU2NvcHVzIFByZXZpZXciLCJzdWIiOiIxMzM0MTI1MyIsImluc3RfYWNjdF9uYW1lIjoiU2NvcHVzIFByZXZpZXciLCJzdWJzY3JpYmVyIjpmYWxzZSwid2ViVXNlcklkIjoiMTMzNDEyNTMiLCJkZXBhcnRtZW50SWQiOiIyODk4MzkiLCJpc3MiOiJTY29wdXMiLCJpbnN0X2FjY3RfaWQiOiIyNzg2NDEiLCJpbnN0X2Fzc29jX21ldGhvZCI6IiIsImFjY291bnROdW1iZXIiOiJDMDAwMjc4NjQxIiwicGF0aF9jaG9pY2UiOmZhbHNlLCJhdWQiOiJTY29wdXMiLCJuYmYiOjE3MDIxMjE0MDYsImZlbmNlcyI6WzJdLCJpbmR2X2lkZW50aXR5X21ldGhvZCI6IiIsImluc3RfYXNzb2MiOiJHVUVTVCIsImluZHZfaWRlbnRpdHkiOiJBTk9OIiwidXNhZ2VQYXRoSW5mbyI6IigxMzM0MTI1MyxVfDI4OTgzOSxEfDI3ODY0MSxBfDcyMjE4LFB8MSxQTCkoU0NPUFVTLENPTnwxMWYxMzYyZDQwYmM5ODRhOWI1YmE0MTkxN2JmOWYxZGVhYTNneHJxYSxTU098QU5PTl9HVUVTVCxBQ0NFU1NfVFlQRSkiLCJwcmltYXJ5QWRtaW5Sb2xlcyI6W10sImV4cCI6MTcwMjEyMjMwNiwiYXV0aF90b2tlbiI6IjExZjEzNjJkNDBiYzk4NGE5YjViYTQxOTE3YmY5ZjFkZWFhM2d4cnFhIiwiaWF0IjoxNzAyMTIxNDA2fQ.T29iwa6cM-4dGwCebjo5F6aqXiqeUJfiMESpN__5PW5i9xa2bUzj4fYt04hEMeq8W7_xwLheLtDoDgsd53mzCnlWPWT9BkgKj-fGvBEcsCbP5OQVH4isWeAsRXRX1W_ve36rhtuU14EW9uVUvOzPs7rS625v2coPsAyA3vEdk_a2liy2D4YXnBpKhCKxaKu24Nu6GXnosc869avQWb97tJkasB_prUP0Z1H3aD_xfrYOE6Eco40VjthJIEn40EUNOjavt1sHlBb14wzG4qK9Q4ybVhuqM8DAGBB9nHqht8X00QsCk9JXy3VkGIIf-wx5e7wOkApslnaYyMikTNSPrw; Scopus-usage-key=enable-logging; __cf_bm=GNRA6QotJd2_lEi9HRoMSas9q8kHETXdIopLnioogV0-1702121645-0-ASAVmDbu5zaDCut1W7rzFOLHGf7WtCwC9ZBMJpb80h02MzuIdf2QqLtta2UjlNUcSvIQrEWTooVv7FrW95XiAL4=; _cfuvid=BnAAGv1G7RQnIHiPR3r9Ss0aRgQ5DC54NYdy.daSOE4-1702070771816-0-604800000; AT_CONTENT_COOKIE="FEATURE_NEW_CTO_SOURCES:0,FEATURE_NEW_CTO_AUTHOR_SEARCH:0,"; AWSELB=CB9317D502BF07938DE10C841E762B7A33C19AADB1407727EEAC94C9EE57FE9E0D4503FF6D81A7EC590514CE391F3156984EBF98DCA31AAC5A6BDE3E4B4DACF34F3854CEEB55E2F000C95EB1FCF93BFC5571981FE4; SCSessionID=A3B0DB575D57CC811A9CBB57D77DD291.i-0c557d16cd3857298; scopus.machineID=79106CAC51C9A6C4D455EDA9E2DEA120.i-0e68c66791399f18f; scopusSessionUUID=f81ea079-9e58-457a-8'
+    }
+
+    response = requests.request("GET", url, headers=headers)
+    data = response.json()
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Перевірка наявності помилок у відповіді
+        data = response.json()
+        
+        
+        # Ваші дані для графіків - приклад
+        try:
+            docobj = data['docObj']
+            citeobj = data['citeObj']
+            chart_data = {
+                'docObj': [x for x in docobj],
+                'citeObj': [y for y in citeobj],
+            }
+            context = {
+            'scholar': scholar,
+            'chart_data': json.dumps(chart_data),
+            }
+            return render(request, 'result_els.html', context)
+        except:
+            context = {
+            'scholar': scholar,
+            
+            }
+            return render(request, 'result_els.html', context)
+
+    
+
+    except requests.exceptions.RequestException as err:
+        # Обробка помилок у випадку проблеми з запитом
+        return HttpResponse(f'Error: {err}', status=500)
+
 
 class PersonListView(ListView):
     model = MyData
@@ -171,6 +220,8 @@ def search_elsevier(request):
                         
 
                         elsevier_model = ElsevierModel(
+                            first_name=first_name,
+                            last_name=last_name,
                             author_name=author_name,
                             sub_title=sub_title,
                             url=url,
@@ -188,6 +239,8 @@ def search_elsevier(request):
                         )
                         elsevier_model.save()
                     results = ElsevierModel.objects.filter(author_name__icontains=search_query)
+                    # results+=ElsevierModel.objects.filter(first_name__icontains=search_query)
+                    # results+=ElsevierModel.objects.filter(last_name__icontains=search_query)
                     return render(
                         request,
                         "search_results_els.html",

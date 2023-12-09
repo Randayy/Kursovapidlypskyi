@@ -13,6 +13,7 @@ urlpatterns = [
     path(
         "scholar_detail/<int:scholar_id>/", views.scholar_detail, name="scholar_detail"
     ),
+    path("elsevier_detail/<int:scopus_id>/", views.elsevier_detail, name="elsevier_detail"),
     path('persons/',views.indexx, name='indexx'),
 ]
 

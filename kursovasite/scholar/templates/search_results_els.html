@@ -79,7 +79,7 @@
         margin-right: auto;
         position: relative;
         width: 400px;
-        height: 200px;
+        height: 250px;
 
         {% comment %} transform: translate(-50%, -50%); {% endcomment %}
         background-color: rgba(0, 0, 0, 0.8);
@@ -334,7 +334,9 @@
                     <tbody>
                         {% for result in results %}
                             <tr>
-                                <td>{{ result.author_name }}</td>
+                                <td>
+                                    <a href="{% url 'elsevier_detail' result.id %}">{{ result.author_name }}</a>
+                                </td>
                                 <td>{{ result.sub_title }}</td>
                                 
                                 <!-- ... (додайте дані інших стовпців) ... -->

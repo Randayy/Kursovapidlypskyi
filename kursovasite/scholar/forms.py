@@ -14,6 +14,7 @@ class SearchForm_Elsevier(forms.Form):
         widget=forms.TextInput(
             attrs={"class": "form-control", "placeholder": "Enter first name"}
         ),
+        required=False, 
     )
     
     last_name = forms.CharField(
