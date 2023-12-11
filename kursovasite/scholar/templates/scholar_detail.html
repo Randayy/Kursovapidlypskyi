@@ -176,7 +176,22 @@
               </li>
               {% endif %} {% if scholar.email %}
               <li class="list-group-item">Email: {{ scholar.email }}</li>
+              {% endif %}{% if scholar.h_index %}
+              <li class="list-group-item">H-index: {{ scholar.h_index }}</li>
+              {% endif %} {% if scholar.i10_index %}
+              <li class="list-group-item">
+                i10-index: {{ scholar.i10_index }}
+              </li>
               {% endif %}
+            </ul>
+            <ul>
+              {% for article, url in zipped_data %}
+              <li>
+                {% if url %}
+                <a href="{{ url }}">{{ article }}</a>
+                {% else %} {{ article }} {% endif %}
+              </li>
+              {% endfor %}
             </ul>
           </div>
 
